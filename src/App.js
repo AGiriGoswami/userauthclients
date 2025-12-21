@@ -6,10 +6,10 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
 import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const token = localStorage.getItem("jwt");
- 
+  const { authUser } = useSelector((store) => store.user);
 
   return (
     <>
@@ -18,7 +18,7 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={token ? <Home /> : <Navigate to="/login" />}
+          element={authUser ? <Home /> : <Navigate to="/login" />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
