@@ -7,9 +7,12 @@ import Register from "./Pages/Register";
 import Profile from "./Pages/Profile";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+// import dotenv from "dotenv";
+// dotenv.config();
 
 const App = () => {
   const { authUser } = useSelector((store) => store.user);
+
 
   return (
     <>

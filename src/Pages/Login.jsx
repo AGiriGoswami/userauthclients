@@ -13,24 +13,27 @@ const Login = () => {
   const Navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const URL = process.env.REACT_APP_API_URL;
+
+  // console.log("API URL:", URL);
+
   const HandleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/user/login",
-        user,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log(res);
+      const res = await axios.post(`${URL}/api/user/login`, user, {
+        withCredentials: true,
+      });
+
       dispatch(setauthUser(res.data));
       Navigate("/profile");
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.response.data.errors || error.response.data.message);
+      toast.error(
+        error.response?.data?.errors || error.response?.data?.message
+      );
     }
   };
+
   return (
     <div className="flex items-center justify-center mt-20">
       <div className="flex justify-center">
@@ -43,7 +46,6 @@ const Login = () => {
 
               <div className="items-center mt-2">
                 <label className="input input-bordered flex items-center gap-2 mb-2">
-                  
                   <input
                     type="text"
                     placeholder="Email"
@@ -55,7 +57,6 @@ const Login = () => {
                   />
                 </label>
                 <label className="input input-bordered flex items-center gap-2 mb-2">
-                
                   <input
                     type="password"
                     placeholder="******"

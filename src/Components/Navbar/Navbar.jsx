@@ -12,10 +12,12 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+   const URL = process.env.REACT_APP_API_URL;
+
   const Logout = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/user/logout",
+        `${URL}/api/user/logout`,
         {
           withCredentials: true,
           headers: {

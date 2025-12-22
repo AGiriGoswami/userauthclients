@@ -9,21 +9,19 @@ const Register = () => {
     email: "",
     password: "",
   });
+
+   const URL = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const HandleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:4000/api/user/register",
-        user,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await axios.post(`${URL}/api/user/register`, user, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       toast.success(res.data.message || "Account Created Successfully");
 

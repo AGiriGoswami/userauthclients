@@ -21,11 +21,13 @@ const Profile = () => {
   const userName = authUser?.preuser?.name || "User";
   const userEmail = authUser?.preuser?.email || "No email provided";
 
+  const URL = process.env.REACT_APP_API_URL;
+
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/user/logout",
+        `${URL}/api/user/logout`,
         {
           withCredentials: true,
           headers: {
